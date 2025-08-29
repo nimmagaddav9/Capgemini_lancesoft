@@ -1,0 +1,57 @@
+Architecture & Strategy
+
+Q1: How would you migrate a monolithic front-end to micro frontends?
+A: Use the Strangler pattern: start with non-critical modules (e.g., header/footer), integrate via Module Federation or Single-SPA, ensure shared libraries for consistency, and deploy independently for faster releases.
+
+Q2: When do you use SSR vs CSR vs Edge rendering?
+A:
+
+CSR: For dashboards, internal tools, SPA-like UX.
+
+SSR: SEO-heavy, first-load critical pages.
+
+Edge rendering: For global users → low latency via CDN edge locations.
+
+Q3: How do you ensure technical governance across teams?
+A: Define design systems, coding standards, reusable component libraries, enforce via linting, PR reviews, and maintain ADR docs for key architectural decisions.
+
+React & Front-End Expertise
+
+Q4: How do you structure a large React app?
+A: Feature-based folders, Atomic Design for components, custom hooks for logic reuse, Redux Toolkit/RTK Query for state, and Storybook for UI testing.
+
+Q5: Explain Redux vs Context API vs Recoil.
+A:
+
+Redux: Complex state, middleware like Saga.
+
+Context API: Light global state, simple apps.
+
+Recoil: Fine-grained state, simpler than Redux, no boilerplate.
+
+Q6: How do you handle real-time updates in React?
+A: WebSockets or SSE with React Query for caching and optimistic UI updates for UX.
+
+Legacy to Modern Transformation
+
+Q7: How did you modernize legacy systems at United Airlines?
+A: Migrated .NET pages to React, adopted micro frontends, added SSR & edge rendering, created shared UI libraries, automated CI/CD pipelines, and integrated Akamai/Optimizely for experiments.
+
+Q8: Big bang vs phased migration?
+A: Phased → lower risk, production-safe; Big bang → clean slate, but risky and time-consuming.
+
+Performance & Security
+
+Q9: How do you improve front-end performance?
+A: Code splitting, lazy loading, SSR caching, CDN edge nodes, image optimization, and Lighthouse audits.
+
+Q10: Security best practices for front-end?
+A: CSP headers, SameSite cookies, token in HttpOnly cookies, input sanitization, and linting security rules.
+
+Leadership & Communication
+
+Q11: How do you mentor teams on new tech stacks?
+A: Workshops, starter templates, code reviews, brown-bag sessions, and clear migration guides.
+
+Q12: How do you communicate technical solutions to business?
+A: Use visual diagrams, tie changes to business KPIs (e.g., SSR → 20% faster load), and give ROI-driven roadmaps.
