@@ -1,0 +1,156 @@
+1.	Tell me about yourself (shortened):
+I’m a Senior Full Stack Engineer with 12+ years of experience building .com websites using HTML5, CSS3, JavaScript, React.js, and Redux.
+For the last 2 years at United Airlines, I’ve been on the React migration team converting .NET pages to React using our in-house ATMOS library. I delivered several security and account management features like Forgot Password, MileagePlus sign-in, Miles-Pooling, TSA Precheck, Known Traveler Number (KTN), and WCAG accessibility updates. Redux-Saga handled our async flows for data fetching and API calls.
+Key initiatives included Miles-Pooling (rewards sharing), TSA Precheck integration, Under18 account restrictions, and enhanced account security.
+Previously:
+•	Visa Inc. – Migrated MBDA modules (Application Mgmt, Portfolio Mgmt, Billing, Analytics) for Wells Fargo, Bank of America.
+•	Capital Group – Built Highcharts data visualizations in React, integrated with AEM, and created Creative Workbench for article publishing.
+•	Cerner – Developed medical examination forms.
+•	Office Depot – Built Black Friday reporting tools.
+•	Satinos Technologies – Developed a tax portal and school website for Vignan Schools.
+
+2. Core React Hooks
+•	useState, useEffect – For state management and side effects (data fetching, DOM updates).
+•	useRef – For accessing DOM elements and storing mutable values without re-rendering.
+•	useContext – For global state and theme/config sharing without prop drilling.
+•	useMemo, useCallback – For performance optimization, memoizing expensive calculations and stable callbacks.
+
+Custom Hooks
+•	Built custom hooks to handle reusable logic like API calls with error/loading states, form validations, and managing authentication flows.
+Advanced Scenarios
+•	Combined hooks with Redux-Saga for async workflows like fetching user profiles, Miles-Pooling transactions, TSA Precheck data.
+•	Used hooks to trigger accessibility improvements (e.g., focusing error elements for WCAG compliance).
+•	Integrated hooks with Highcharts for data visualizations at Capital Group.
+
+
+3. simplest JavaScript code for sum(3,4,5):
+function sum(...nums) {
+  return nums.reduce((total, num) => total + num, 0);
+}
+console.log(sum(3, 4, 5)); // Output: 12
+
+
+4. custom hook for sorting: A custom hook for sorting is a reusable function in React that uses hooks like useState and useMemo to manage sorting logic (key, order) and return the sorted data plus functions to control sorting. It keeps components clean and the logic reusable.
+
+5. useMemo vs useCallback
+•	useMemo: Caches the result of an expensive calculation so it only recomputes when dependencies change. Example: sorting a big list or computing derived data.
+•	useCallback: Caches the function itself so React doesn’t create a new function on every render. Example: passing a stable callback to child components to prevent unnecessary re-renders.
+Both help with performance optimization by reducing re-renders and recomputations.
+
+6. Purpose of useMemo?
+useMemo → Caches values to avoid recalculating expensive results on every render.
+const sorted = useMemo(() => sortData(data), [data]);
+•	useCallback → Caches functions so they aren’t recreated on every render, preventing child re-renders.
+•	const handleClick = useCallback(() => doSomething(id), [id]);
+Both help with performance optimization:
+•	useMemo → Memoize results
+•	useCallback → Memoize functions
+
+
+=====
+1. united airlines what is your role
+I am a core UI Developer with 10+ years of experience building .com websites for different organizations using HTML5, CSS3, JavaScript, React.js, and Redux. 
+In the past 2 years, I worked on the React migration team, where I converted the .net pages to react on united.com. 
+Frontend is React, and used ATMOS (Own library) components used company wide.
+
+used middleware such as redux-saga to handle asynchronous tasks such as API calls, data fetching, and impure actions in a more organized and efficient way.
+
+Worked on Security features for users where they can manage there account like Forgot password, Forgot MileagePlus number, security questions, Sign-in features, Miles-Pooling, United Club pass,  Recent Activity, dashboard updates and KTN(Known Traveler Number), Accessibility guidelines features on united.com.
+
+The new initiative worked on Miles-Pooling( points you get after traveling), TSA Precheck, Account security and management features, and Under18.
+
+2. React standalone components
+Reusable, isolated pieces of UI that don’t depend on global state. Props in/out, no hidden side effects.
+
+3. Redux vs Zustand
+Redux → predictable, boilerplate heavy, great for large apps.
+Zustand → lightweight, minimal API, easier setup, simpler for smaller/mid apps.
+
+4. Can we mix Redux with Zustand?
+Yes. You can use Redux for global/shared state and Zustand for local/feature-specific state.
+
+5. Values between micro frontends
+Shared via event bus, custom DOM events, or shared storage (localStorage/sessionStorage/Context APIs exposed).
+
+6. State management in micro frontends
+Decentralized. Each microfrontend manages its own state. For shared state, use cross-frontend store (Redux, Zustand) or message bus.
+
+7. Tools for microfrontend
+Webpack Module Federation, Single-SPA, Nx, Bit, Lerna.
+
+8. Microfrontend architecture in React
+Each team builds independently deployable React apps, stitched together using Module Federation or a container shell.
+
+9. Publishing npm library
+Build reusable components → bundle with Rollup/Webpack → version and publish to npm (public or private registry).
+
+10. Service impact during migration
+Need backward compatibility. Old services must support both old (.NET) and new (React) clients until migration is complete.
+
+11. Architecting .NET component to React
+Break monolith UI into React components. Mirror business logic in APIs, keep UI logic in React.
+
+12. .NET component equivalent in React
+.NET user controls map to React components. Shared libraries map to npm packages.
+
+13. Rendering mechanism .NET vs React
+.NET (Razor/WebForms) → server-side rendering.
+React → client-side rendering (with option for SSR using Next.js).
+
+14. Why choose React?
+Component-based, fast virtual DOM, strong ecosystem, reusable, easier scaling compared to tightly coupled server-side rendering.
+
+15. Migrating .NET → React: evaluating components
+Identify reusable UI patterns, decouple business logic into APIs, convert UI to React functional components.
+
+16. Best practice for token storage
+Short-lived access token in memory, refresh token in httpOnly cookie. Avoid localStorage for security.
+
+17. Where it’s stored?
+Access token → memory (Redux/Zustand).
+Refresh token → secure httpOnly cookie.
+
+18. PKCE flow
+PKCE = Proof Key for Code Exchange. Adds code verifier + challenge to OAuth for securing SPA/public clients.
+
+19. OAuth flow library used?
+oidc-client-ts, react-oauth2-pkce, or Auth0 SDKs.
+
+20. Difference between .NET vs React architecture
+.NET → monolithic, server-rendered, tightly coupled UI + backend.
+React → client-side, component-driven, API-first, decoupled from backend.
+
+=======================================
+
+Technical interview: ventleytech/capgemini/comcast
+
+1. current project explain?
+2. In RTL what is act?
+act() ensures all React updates (state, effects) are flushed before making assertions. It wraps test code so you don’t get warnings about async updates.
+
+3. Which testing libraries did you use?
+Jest for test runner, React Testing Library for component testing, Enzyme for legacy, Cypress/Playwright for end-to-end.
+
+4. i18n? how did you implement in frontend?
+Used react-i18next. Wrapped app in I18nextProvider, created translation JSON files per locale, switched language dynamically using the hook useTranslation.
+
+5. What is the build tool you used for United?
+Webpack 5 with Module Federation for microfrontends. Also used Babel + ESLint integrated into the build.
+
+6. How did you add validation to input fields in React?
+Two approaches:
+
+Controlled components with custom validation logic.
+
+Libraries like Formik + Yup or react-hook-form for schema-based validation.
+
+7. Authentication mechanism did you use in United?
+OAuth2 with PKCE. Access token stored in memory, refresh token in secure httpOnly cookie. Used oidc-client-ts for flow handling.
+
+
+
+
+
+
+
+

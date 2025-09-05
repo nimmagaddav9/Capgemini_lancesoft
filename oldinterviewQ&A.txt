@@ -1,0 +1,208 @@
+1. What are the popular hooks in react and explain it's usage?
+
+useState: Manages state in functional components.
+useEffect: Manages side effects in functional components.
+useContext: Consumes context in functional components.
+useReducer: Manage state with a reducer function, For More complex state management.
+useRef: Accesses DOM elements or stores mutable values.
+useCallback: performance improvement usecase
+useMemo: performance improvement usecase.
+
+React Interview questions
+
+	1. Tell me about you current project and technical stack you are using?
+	I am currently working for Capital Group in Irvine, CA for Davis Project. Davis stands for Data visualization where we build different highcharts using react and integrate to the AEM., backend is Java. I am integration  specialist worked on various tools like percolate, workfront, edam, ckeditor5 etc.
+	Previously I worked on Creative workbench, it is a writing tool where article are published on to capital group websites.
+	In Cerner Corporation worked on the medical examination forms.
+	In Office Depot worked on black Friday reporting.
+	In Satinos Technologies created a tax portal, also build schoomin website for the vignan schools.
+	
+	2. Are you comfortable to work with Angular ? Worked earlier on Angular, currently working on React.js from past 3 years.
+	
+	3. What are synthetic events
+	A cross-browser wrapper around the browser’s native event. It has the same interface as the browser’s native event, including stopPropagation() and preventDefault(), except the events work identically across all browsers.
+	
+	4. Promise Vs Observables difference ?
+	A Promise handles a single event when an async operation completes or fails.
+	An Observable is like a Stream (in many languages) and allows to pass zero or more events where the callback is called for each event.
+	While a Promise starts immediately, an Observable only starts if you subscribe to it. This is why Observables are called lazy.
+	
+	Observable provides operators like map, forEach, reduce, ... similar to an array
+	
+	
+	5. What is Pure component?
+	Pure Components in React are the components which do not re-renders when the value of state and props has been updated with the same values. If the value of the previous state or props and the new state or props is the same, the component is not re-rendered.
+	Extending React Class Components with Pure Components ensures the higher performance of the Component and ultimately makes your application faster, While in the case of Regular Component, it will always re-render either value of State and Props changes or not.
+	
+	6. What is controlled component and uncontrolled component?
+	A Controlled Component is one that takes its current value through props and notifies changes through callbacks like onChange. A parent component "controls" it by handling the callback and managing its own state and passing the new values as props to the controlled component. You could also call this a "dumb component".
+	A Uncontrolled Component is one that stores its own state internally, and you query the DOM using a ref to find its current value when you need it. This is a bit more like traditional HTML.
+	Most native React form components support both controlled and uncontrolled usage:
+	
+	// Controlled:
+	<input type="text" value={value} onChange={handleChange} />
+	
+	// Uncontrolled:
+	<input type="text" defaultValue="foo" ref={inputRef} />
+	// Use `inputRef.current.value` to read the current value of <input>
+	
+	7. What is react routing vs conventional routing?
+	React Router is a standard library for routing in React. It enables the navigation among views of various components in a React Application, allows changing the browser URL, and keeps the UI in sync with the URL.
+	
+	Conventional Routing: 
+	In general, when the user types an URL in the browser, an HTTP request is sent to the server, which then retrieves the HTML page. For each new URL, the user is redirected to a new HTML page.
+	
+	8. What testing framework did you use? JEST, react testing library, Enzyme.
+	
+	9. What is Flux pattern?
+	Flux is a pattern for managing how data flows through a React application.
+	passing data from one parent component to it's children components.
+	
+	10. What are lifecycle methods for the react?
+	React Component LifeCycle Hooks
+	
+	        1. constructor
+	        2. componentWillMount()
+	        3. render()
+	        4. componentDidMount()
+	        5. componentWillReceiveProps()
+	        6. shouldComponentUpdate()
+	
+	        // component kill methods
+	
+	        7. componentWillUpdate()
+	        8. componentDidUpdate()
+	        9. componentWillUnmount()
+	
+	Context API, useEffect, useState --- Newly added version by version
+	
+	11. How do you ensure the testing without writing the test cases? By automation. QE checks it. There is no business need to write Unit test.
+	
+	12. What is Single Page application?
+	Loading 1 component to another component without refreshing the whole project.
+	13. Have you used Node?
+	Yes for setting up the front end we need node version 12.  npm package need to run react application.
+	
+	14. Why is node a single threaded ?
+	Node JS is Server Side Scripting language.
+	By using NodeJS we can develop Http Servers.
+	
+	15. Difference between asynchronous vs non-blocking ?
+	To consume the promise we call async and await instead of then(). Latest released in ES9.
+	 "axios" module used to make the asynchrnous calls.
+	Async and Await: Helps us to write the asynchronous code in a synchronous way. Async is infront of function.
+	Await is inside a function marked as async. 
+	
+	16. What is react router?
+	React Router is a standard library for routing in React. It enables the navigation among views of various components in a React Application, allows changing the browser URL, and keeps the UI in sync with the URL. Let us create a simple application to React to understand how the React Router works.
+	
+	
+	17. What is virtual DOM? Why is it used?
+	“virtual”, representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM. This process is called reconciliation.
+	
+18. Explain the React architecture.
+“React is component-based. The root component renders into the DOM, and everything else is a tree of reusable components. State flows through props or global stores like Redux Toolkit. React uses the virtual DOM to update efficiently. For scale, I layer it into UI, state, data services, routing, and cross-cutting concerns like error handling and analytics.”
+
+19. Which IDE, Source Control are you using?
+“I mainly use VS Code with ESLint, Prettier, and GitLens. For source control, Git on GitHub or GitLab, following pull-request workflows with automated linting and tests.”
+
+20. How do you ensure the code is deployed on server?
+“We rely on CI/CD pipelines. Code merged to main triggers build, test, and packaging. Artifacts are deployed to S3 + CloudFront or containers in Kubernetes. Automated smoke tests and monitoring confirm it’s live.”
+	
+	21. What is shadow DOM? Is it similar to virtual DOM?
+	“Shadow DOM is a browser feature that lets web components encapsulate their structure and styles so they don’t leak into the global DOM. It’s about scoping and isolation.
+
+Virtual DOM, on the other hand, is a React concept—an in-memory representation of the UI that React uses to efficiently diff and update the real DOM.
+
+So they’re not the same: Shadow DOM is native browser tech for encapsulation, while Virtual DOM is a React optimization for rendering.”
+	
+	22. What is JSX?
+	JSX stands for JavaScript XML. It is simply a syntax extension of JavaScript. It allows us to directly write HTML in React (within JavaScript code). It is easy to create a template using JSX in React, but it is not a simple template language instead it comes with the full power of JavaScript.
+	
+	23. What are props?
+	“Props” is a special keyword in React, which stands for properties and is being used for passing data from one component to another. But the important part here is that data with props are being passed in a uni-directional flow. ( one way from parent to child)
+	
+	24. What is ES5 vs ES6?
+	ES5 is an abbreviation of ECMAScript 5 and also known as ECMAScript 2009. The sixth edition of the ECMAScript standard is ES6 or ECMAScript 6. It is also known as ECMAScript 2015. ES6 is a major enhancement in the JavaScript language that allows us to write programs for complex applications.
+	
+	
+	
+	25. What is arrow function ?
+	 Anonymous Functions
+	    -------------------
+	        - x`        Example:
+	                Arrow functions acts like "callbacks" to receive the response from server.
+	 
+	    Syntax.
+	    //function definition
+	    var/let/const variablename = (parameters) =>{
+	        //business logic
+	    };
+	 
+	    //call the arrow function
+	    variablename(parameters);
+	-->
+	
+	
+	26. Is react a client side rendering or server side? Client
+	React along with other framework like angular and vue. js are traditional client side framework ,they run in browser but there are technology to run this framework on server side, and next. js is a solution for running react application server side. It also makes react development very simple.
+
+
+Redux is a predictable state container for JavaScript applications. 
+It helps to you write applications, run in different environments and easy to test. 
+And simply we called as Redux is a state management tool.
+	Components in redux
+	Actions -->Input Parameters Ex: Deposit and Withdraw money from ATM
+	Store --> Main Server
+	Reducers --> Business Logic
+	Dispatch --> Request
+	Subscribe --> Response
+State --> Store Component Data
+
+	1. length:    it is used to know the length of array
+	2. Delete: it is used to delete the particular element in array. Memory will not be released.
+	3. map() - it is used to manipulate the each and every array element
+	4. Filter() it is used to create the new array based on condition
+	5. reduce():   - it is used to know the summation of array elements.
+	6. reduceRight():  it is used to know the summation from right to left
+	7. Push() it is used to "add" the element at the end of array
+	8. Pop() it is used to "remove" the element at end of array
+	9. Shift() it is used to "remove" the element from beginning of array
+	10. Unshift():   it is used to "add" the element at beginning of array
+	11. findIndex() it is used to find the index of particular element.
+	12. Splice()  it is used to add or remove the elements from array.
+	13. Slice() - The slice() method returns the selected elements in an array, as a new array object.  Extract particular element in array.
+	14. find() it is used to check the element existence
+	15. includes() - it gives true or false for the element.
+	16. some() if element satisfies then it is true else false.
+	17. every() if all the elements satisfies then true.
+	18. fill() fill() - replace every element with 100. ES9 latest function. Mutability concept.
+	19. sort() The sort() method sorts the items of an array. The sort order can be either alphabetic or numeric, and either ascending (up) or descending (down). //num1-num2, //num2-num1
+	20. IndexOf() - won't return indexes to repeated elements.
+	21. flat() - to get single level array from multi-level array, ES9 function available
+	//Infinity property - more than 1 inner array then we need to go for Infinity
+	22. 
+	23. flatMap() The flatMap() method first maps each element using a mapping function, then flattens the result into a new array. It is identical to a map() followed by a flat() of depth 1, but flatMap() is often quite useful, as merging both into one method is slightly more efficient.
+	24. copyWithIn()     - it is used to shift the indexes
+	25. reverse() The reverse() method reverses the order of the elements in an array.
+	26. Array.form() The Array.from() method returns an Array object from any object with a length property or an iterable object.
+	27. join() The join() method returns the array as a string. The elements will be separated by a specified separator. The default separator is comma (,).
+	28. repeat() The repeat() method returns a new string with a specified number of copies of the string it was called on.
+	29. LastIndexOf() The lastIndexOf() method returns the position of the last occurrence of a specified value in a string.
+	30. toString() The toString() method converts a number to a string.
+	31. replace() The replace() method searches a string for a specified value, or a regular expression, and returns a new string where the specified values are replaced.
+	32. trim() The trim() method removes whitespace from both sides of a string.
+	33. trimStart() The trimStart() method removes whitespace from the beginning of a string. trimLeft() is an alias of this method.
+	34. trimEnd() The trimEnd() method removes whitespace from the end of a string. trimRight() is an alias of this method.
+	35. padStart() The padStart() method pads the current string with another string (multiple times, if needed) until the resulting string reaches the given length. The padding is applied from the start of the current string.
+	36. PadEnd() The padEnd() method pads the current string with a given string (repeated, if needed) so that the resulting string reaches a given length. The padding is applied from the end of the current string.
+	37. split()-The split() method is used to split a string into an array of substrings, and returns the new array.
+	38. substr()- The substr() method extracts parts of a string, beginning at the character at the specified position, and returns the specified number of characters.
+	
+	39. substring() -The substring() method extracts the characters from a string, between two specified indices, and returns the new sub string.
+	
+	40. forEach() - The forEach() method calls a function once for each element in an array, in order.
+	
+	41. for...of()  loops through the values of an iterable object
+	
+	42. for...in() - we can iterate the loop remove the duplicates
