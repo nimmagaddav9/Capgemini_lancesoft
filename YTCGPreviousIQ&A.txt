@@ -1,0 +1,453 @@
+❓ Q1. What happens if you update state during rendering in React?
+
+🟢 Answer:
+It causes an infinite loop. State updates trigger re-renders, and if done during render (not in event handlers or effects), the re-render triggers again immediately.
+
+💡 Mistake Alert: Many devs try to conditionally update state inside the main component function. Capgemini checks if you know React’s render cycle.
+
+
+❓ Q2. How is useMemo different from useCallback? When would you use both together?
+
+🟢 Answer:
+
+useMemo returns a memoized value
+
+useCallback returns a memoized function
+
+Use both when passing functions as props to child components that depend on stable reference and performance optimization.
+
+❓ Q3. Can you explain how useEffect cleanup works in React?
+
+🟢 Answer:
+The return function inside useEffect is a cleanup function. It runs before the component unmounts or before re-running the effect due to dependency change.
+
+useEffect(() => {
+  const timer = setTimeout(...);
+
+  return () => clearTimeout(timer); // cleanup
+}, []);
+
+
+❓ Q4. What’s the difference between useRef and useState?
+
+🟢 Answer:
+
+useRef does not cause re-render when updated
+
+useState does trigger re-render
+
+useRef is ideal for storing mutable values like timers or previous props/state.
+
+❓ Q5. What’s the React rendering behavior when setState is called multiple times?
+
+🟢 Answer:
+React batches state updates. If multiple setState calls are made synchronously, React will group them and update once.
+
+❓ Q6. Why does key prop matter in a list rendering?
+
+🟢 Answer:
+It helps React identify which items have changed/added/removed. Incorrect key usage causes performance issues and weird UI bugs.
+
+❓ Q7. Difference between controlled and uncontrolled components?
+
+🟢 Answer:
+Controlled components get their value from React state. Uncontrolled components rely on DOM’s internal state using ref.
+Capgemini asks this to see if you understand form design and validation tradeoffs.
+
+❓ Q8. Can a functional component have lifecycle methods?
+
+🟢 Answer:
+Not directly. But with useEffect, we mimic lifecycle phases:
+
+Mount = useEffect(() => {}, [])
+
+Update = useEffect(() => {}, [dep])
+
+Unmount = return () => cleanup
+
+❓ Q9. What’s the difference between prop drilling and context?
+
+🟢 Answer:
+
+Prop drilling: Passing props manually through multiple levels.
+
+Context: Provides values globally without prop chain. Used for theme, auth, language, etc.
+
+
+❓ Q10. Why does React re-render even if props don’t change?
+
+🟢 Answer:
+Due to reference inequality (especially for objects/functions). 
+React sees a "new" prop value even if its content is the same. Use memo, useMemo, useCallback to prevent this.
+
+
+What is event loop?
+The event loop is the mechanism that allows JavaScript (which is single-threaded) to handle asynchronous operations without blocking execution.
+
+Example:
+console.log("Start");
+
+setTimeout(() => console.log("Timeout"), 0);
+
+Promise.resolve().then(() => console.log("Promise"));
+
+console.log("End");
+
+
+Output:
+
+Start
+End
+Promise
+Timeout
+
+
+👉 Even though setTimeout is 0 ms, the event loop runs microtasks (Promise) before macrotasks (setTimeout).
+
+How to validate forms?
+Forms can be validated in two ways:
+
+Client-side validation – using HTML5 attributes (required, pattern, minLength) or JavaScript (checking inputs on submit or onChange).
+
+Server-side validation – re-validating data on the backend for security and consistency.
+
+In React, you can validate forms by:
+
+Writing custom validation logic with useState / useEffect.
+
+Using controlled components to track input values and errors.
+
+Leveraging libraries like Formik or React Hook Form with Yup/Zod for schema-based validation.
+
+
+
+what is useSelector?
+
+Answer:
+useSelector is a React-Redux hook that lets you read data from the Redux store state inside a functional component.
+It replaces mapStateToProps from the old connect API.
+
+Example:
+
+import { useSelector } from "react-redux";
+
+function User() {
+  const user = useSelector((state) => state.auth.user);
+  return <div>{user.name}</div>;
+}
+
+
+👉 It subscribes the component to the Redux store, and the component re-renders whenever the selected slice of state changes.
+
+Hooks?
+Answer:
+
+I’ve worked with most of the core React hooks in real projects:
+
+State management:
+
+useState for local component state.
+
+useReducer for complex state transitions.
+
+Side effects & lifecycle:
+
+useEffect for data fetching, subscriptions, and cleanup.
+
+useLayoutEffect when I needed DOM measurements before paint.
+
+Performance optimization:
+
+useMemo to memoize expensive calculations.
+
+useCallback to prevent function re-creation in child components.
+
+React.memo in combination with these.
+
+References & DOM handling:
+
+useRef for persisting values without re-rendering and accessing DOM nodes.
+
+forwardRef when exposing refs to child components.
+
+Context & global state:
+
+useContext to consume theme/auth data.
+
+Custom hooks:
+
+I built custom hooks for reusable logic (like API calls with Axios, form handling, or authentication checks).
+
+
+What is a HOC (Higher-Order Component)?
+
+A Higher-Order Component (HOC) is a pattern in React where you take a component as input and return a new enhanced component. 
+It’s basically a function that adds extra behavior or props to an existing component.
+
+Syntax Example
+function withLogger(WrappedComponent) {
+  return function EnhancedComponent(props) {
+    console.log("Props:", props);
+    return <WrappedComponent {...props} />;
+  };
+}
+
+// Usage
+const UserWithLogger = withLogger(User);
+
+Use Cases
+
+Code reuse across components (e.g., auth checks, logging).
+
+Adding conditional rendering.
+
+Wrapping components with extra props (e.g., theme, tracking).
+
+
+
+Q. initiate multiple promises in a single call?
+Answer:
+
+We can initiate multiple promises at once and handle them together using Promise.all, Promise.allSettled, or Promise.race depending on the requirement.
+
+Example with Promise.all
+const p1 = Promise.resolve(1);
+const p2 = Promise.resolve(2);
+const p3 = Promise.resolve(3);
+
+Promise.all([p1, p2, p3])
+  .then((values) => {
+    console.log(values); // [1, 2, 3]
+  })
+  .catch((err) => console.error(err));
+
+
+Runs all promises in parallel.
+
+Resolves when all succeed, rejects if any fail.
+
+Q. Exception Handling in Promises
+In promises, exceptions are handled with .catch() at the end of a chain, or with try...catch when using async/await.
+
+Using .catch()
+
+fetch("/api/data")
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error("Error:", err));
+
+
+Any error in the chain (network error, JSON parse, etc.) will be caught here.
+
+Using try...catch with async/await
+
+async function getData() {
+  try {
+    const res = await fetch("/api/data");
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
+
+
+Cleaner, more readable for sequential async logic.
+
+Code:
+for (var i = 0; i < 10; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, 1000);
+}
+
+What happens:
+
+var is function-scoped, not block-scoped.
+
+By the time the callback inside setTimeout executes (after ~1000ms), the loop has already finished.
+
+The final value of i is 10.
+
+Output:
+10
+10
+10
+10
+10
+10
+10
+10
+10
+10
+
+
+(10 times)
+
+
+How to fix (use let):
+for (let i = 0; i < 10; i++) {
+  setTimeout(() => console.log(i), 1000);
+}
+
+
+let is block-scoped, so each iteration has its own i.
+
+Output will be:
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+Axios: apps with lots of API calls, auth headers, interceptors, retries, consistent error handling.
+
+Fetch: small apps, performance-sensitive bundles, or when you want only the platform API.
+
+Q. content negotiation
+Content negotiation is how client and server agree on the response format (like JSON or XML) using headers like Accept and Content-Type.
+
+
+Q. What is Application Type?
+
+In HTTP, the Content-Type header tells the client what kind of data is being sent.
+When it starts with application/, it means the body contains application-specific structured data (not plain text or images).
+
+Common application/* types
+
+application/json → JSON data (most common in APIs).
+
+application/xml → XML data.
+
+application/x-www-form-urlencoded → form data sent in key=value pairs.
+
+multipart/form-data → used for file uploads with forms.
+
+application/pdf → PDF document.
+
+application/javascript → JavaScript code.
+
+application/octet-stream → raw binary data (download).
+
+
+“What is a third-party library?
+
+Redux follows a unidirectional data flow:
+
+Store – single source of truth, holds the entire application state.
+
+Action – plain JS object describing what happened (e.g., { type: "INCREMENT" }).
+
+Reducer – pure function that takes the current state + action and returns a new state.
+
+Dispatch – sends an action to the store.
+
+View (UI) – subscribes to the store (via useSelector) and re-renders when state changes.
+
+Flow:
+UI → dispatch(action) → reducer → new state in store → UI updates
+
+
+Q. What is Context API?
+
+The Context API is a built-in feature in React that lets you share data (like theme, user, auth, language) across components without prop drilling.
+
+
+Q. What is Thunk?
+
+A thunk is a function that wraps an expression or piece of logic so it can be executed later.
+
+In Redux, redux-thunk is a middleware that lets you write action creators that return a function (instead of an action object).
+That function can perform async tasks (like API calls) and then dispatch normal actions.
+
+Why it’s needed
+
+By default, Redux actions must be plain objects.
+
+With Thunk, you can handle async logic (API calls, timeouts, conditional dispatch).
+
+
+Q. When to pick Tailwind
+
+You want full design control without writing separate CSS files.
+
+You care about small bundles (JIT purges unused classes).
+
+You’re building a custom design system or already have one.
+
+You like utility-first workflow and componentizing with React.
+
+When to pick Bootstrap
+
+You need to ship fast with decent defaults.
+
+You want prebuilt components (navbars, modals, toasts) that look fine out of the box.
+
+Your team isn’t design-heavy and prefers consistent, familiar UI.
+
+
+Q. What is React Fiber?
+
+React Fiber is the internal reconciliation engine of React (introduced in React 16).
+It’s the algorithm React uses to figure out what parts of the UI need to be updated when state or props change.
+
+QWhen you press Enter on a URL, the browser does DNS → TCP/TLS → HTTP request and gets back index.html. 
+That file loads the React bundle. React mounts into the root div, React Router matches the URL, fetches any needed code/data, and renders the right components to the DOM. Subsequent navigations happen with the History API, so no full reload.
+
+
+
+What is async/await?
+
+async/await is syntax sugar over Promises that makes asynchronous code look synchronous.
+
+async marks a function as asynchronous (it always returns a Promise).
+
+await pauses execution until the Promise resolves (or throws if rejected).
+
+
+
+Q. remove 6th element in array?
+
+Example
+const arr = [1,2,3,4,5,6,7,8,9,10];
+
+// remove 6th element (index 5)
+const newArr = arr.filter((_, index) => index !== 5);
+
+console.log(newArr); // [1,2,3,4,5,6,7,8,9,10] with 6th element removed
+console.log(arr);    // original array intact
+
+Alternative with slice()
+const newArr = [...arr.slice(0, 5), ...arr.slice(6)];
+
+Pollyfill?
+“A polyfill is fallback code that implements modern features in older browsers that don’t support them, like adding Promise or fetch where missing.
+
+
+hooks on top?
+
+Hooks must be at the top level so React can track them in the same order every render—putting them in conditions or loops would break state consistency.
+
+Q. Why keys are needed
+
+Keys help React identify elements in a list.
+
+When the list changes (add, remove, reorder), React uses keys to decide which items to re-use and which to re-render.
+
+Without keys (or with bad keys like array index), React may mis-match items → causing bugs, wrong state, or unnecessary re-renders.
+
+
+Lifecycle mapping (useful in interviews)
+
+componentDidMount → useEffect(() => {...}, [])
+
+componentDidUpdate → useEffect(() => {...}, [deps])
+
+componentWillUnmount → cleanup in useEffect return

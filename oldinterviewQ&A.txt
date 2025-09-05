@@ -206,3 +206,5 @@ State --> Store Component Data
 	41. for...of()  loops through the values of an iterable object
 	
 	42. for...in() - we can iterate the loop remove the duplicates
+
+    
