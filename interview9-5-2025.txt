@@ -1,0 +1,9 @@
+Introduce yourself?
+code split in react
+HOC (Higher-Order Component)
+pure component vs class component
+how to enable dark and light theme
+how to avoid rerendering
+example for usecallback
+React Transition API (useTransition)
+custom font implementation vijay
